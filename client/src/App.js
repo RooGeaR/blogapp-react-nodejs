@@ -2,7 +2,6 @@ import "./App.css";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
   Outlet,
 } from "react-router-dom";
 import Single from "./pages/Single";

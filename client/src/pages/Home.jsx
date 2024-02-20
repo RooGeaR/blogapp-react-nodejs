@@ -69,7 +69,7 @@ const Home = () => {
                 <h1 className="font-bold text-4xl">{post.title}</h1>
               </Link>
               <p className="text-lg">{truncate(post.content)}</p>
-              <button className="w-max pl-2.5 pr-5 border-2 border-orange-400 text-orange-400 hover:border-white hover:bg-orange-300 hover:text-red-400">
+              <button className="w-max py-2.5 px-5 border-2 border-orange-400 text-orange-400 hover:border-white hover:bg-orange-300 hover:text-red-400">
                 Leer más
               </button>
             </div>

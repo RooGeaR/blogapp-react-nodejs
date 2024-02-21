@@ -19,8 +19,14 @@ export const getPost = async (req, res) => {
     return res.send(error);
   }
 };
-export const addPost = (req, res) => {
-  res.json("Add post");
+export const addPost = async (req, res) => {
+  try {
+    const data = req.body;
+    const createdUser = await prisma.post.create({ data });
+    return res.status(201).json(createdUser);
+  } catch (error) {
+    return res.send(error);
+  }
 };
 export const deletePost = async (req, res) => {
   try {
@@ -33,6 +39,13 @@ export const deletePost = async (req, res) => {
     return res.send(error);
   }
 };
-export const updatePost = (req, res) => {
-  res.json("Update post");
+export const updatePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = req.body;
+    await prisma.post.update({ where: { id: Number(id) }, data });
+    return res.json("Post has been updated!");
+  } catch (error) {
+    return res.send(error);
+  }
 };

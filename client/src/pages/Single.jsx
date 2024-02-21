@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { formatDistance } from "date-fns";
 
 const Single = () => {
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   const postId = location.pathname.split("/")[2];
@@ -38,7 +38,7 @@ const Single = () => {
         const message = `An error has occured: ${res.status}`;
         throw new Error(message);
       }
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -46,14 +46,20 @@ const Single = () => {
   return (
     <div className="flex gap-12">
       <div className="flex-[5_5_0%] flex flex-col gap-7">
-        <img className="w-full h-72 object-cover" src={post?.img} alt="" />
+        {post?.img && (
+          <img
+            className="w-full h-72 object-cover"
+            src={`../uploads/${post.img}`}
+            alt=""
+          />
+        )}
         <div className="flex items-center gap-2 text-base">
           <div>
             <span className="font-bold">{post?.author}</span>
-            <p>Posted {formatDistance(Date(post.date), new Date())}</p>
+            <p>Posted {formatDistance(Date(post?.date), new Date())}</p>
           </div>
           <div className="flex gap-1">
-            <Link to={`/write?edit=${post.id}`}>
+            <Link to={`/write?edit=${post?.id}`} state={post}>
               <img className="w-8 h-8" src={Edit} alt="Edit button" />
             </Link>
             <img
@@ -64,8 +70,11 @@ const Single = () => {
             />
           </div>
         </div>
-        <h1 className="font-bold text-4xl">{post.title}</h1>
-        <p className="text-lg text-justify">{post.content}</p>
+        <h1 className="font-bold text-4xl">{post?.title}</h1>
+        <p
+          className="text-lg text-justify"
+          dangerouslySetInnerHTML={{ __html: post?.content }}
+        ></p>
       </div>
     </div>
   );

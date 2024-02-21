@@ -12,8 +12,8 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex items-center gap-2.5">
-          <span className="font-light bg-orange-500 rounded-full w-12 h-12 flex items-center justify-center hover:text-orange-400 hover:bg-white hover:border-orange-500 border-2">
-            <Link to="write">Write</Link>
+          <span className="font-light bg-orange-500 rounded-full w-14 h-14 flex items-center justify-center hover:text-orange-400 hover:bg-white hover:border-orange-500 border">
+            <Link to="write" state={null}>Write</Link>
           </span>
         </div>
       </div>

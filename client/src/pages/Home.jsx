@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const truncate = (str) =>
   str?.length > 70 ? `${str.substring(0, 70)}...` : str;
 
 const Home = () => {
-  const posts = [
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:3001/api/posts");
+        if (!res.ok) {
+          const message = `An error has occured: ${res.status}`;
+          throw new Error(message);
+        }
+
+        const data = await res.json();
+        setPosts(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  /* const posts = [
     {
       id: 1,
       title: "Title 1",
@@ -51,7 +71,7 @@ const Home = () => {
       created_at: "2024-02-15",
       img: "https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg",
     },
-  ];
+  ]; */
   return (
     <div>
       <div className="flex flex-col gap-24 mt-10 [&>*:nth-child(odd)]:flex-row-reverse">
@@ -69,9 +89,11 @@ const Home = () => {
                 <h1 className="font-bold text-4xl">{post.title}</h1>
               </Link>
               <p className="text-lg">{truncate(post.content)}</p>
-              <button className="w-max py-2.5 px-5 border-2 border-orange-400 text-orange-400 hover:border-white hover:bg-orange-300 hover:text-red-400">
-                Leer más
-              </button>
+              <Link to={`/post/${post.id}`}>
+                <button className="w-max py-2.5 px-5 border-2 border-orange-400 text-orange-400 hover:border-white hover:bg-orange-300 hover:text-red-400">
+                  Leer más
+                </button>
+              </Link>
             </div>
           </div>
         ))}

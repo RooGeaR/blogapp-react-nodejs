@@ -4,20 +4,8 @@ Este es un ejemplo de una aplicación de Blog usando React y Tailwind CSS, Node.
 
 El proyecto esta estructurado con las carpetas:
 
-- client (Frontend)
 - api (Backend)
-
-## Frontend
-
-Desde la carpeta raíz ejecutar:
-
-```bash
-cd client
-npm install
-npm start
-```
-
-Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
+- client (Frontend)
 
 ## Backend
 
@@ -36,5 +24,17 @@ npm start
 ```
 
 Los servicios se ejecutan en [http://localhost:3001](http://localhost:3001)
+
+## Frontend
+
+Desde la carpeta raíz ejecutar:
+
+```bash
+cd client
+npm install
+npm start
+```
+
+Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
 
 Ya se puede empezar a usar la aplicación.

@@ -105,6 +105,7 @@ const Write = () => {
               onChange={(e) => setFile(e.target.files[0])}
             />
           </label>
+          {(file || state?.img) && <img src={file ? URL.createObjectURL(file): `../uploads/${state?.img}`} alt="" className='w-64 h-64 object-cover mx-auto'/>}
           <div className="flex justify-center">
             {/* <button className="text-orange-400 bg-white border border-orange-400 px-1 py-2">
               Guardar como borrador
